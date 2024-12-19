@@ -1,18 +1,21 @@
 /* TODO - add your code to create a functional React component that renders details for a single book. Fetch the book data from the provided API. You may consider conditionally rendering a 'Checkout' button for logged in users. */
 import { useEffect, useState } from "react";
 import { useGetBookQuery } from "./SingleBookSlice";
+import { useParams } from "react-router-dom";
 
-export default function SingleBook({selectedBookId, setSelectedBookId}) {
-  const { data: individualBook, isLoading, error } = useGetBookQuery(id);
+export default function SingleBook({ selectedBookId, setSelectedBookId }) {
+  const { id } = useParams();
+  const { data: aBook, isLoading, error } = useGetBookQuery(id);
 
   const [singleBook, setSingleBook] = useState({});
 
   useEffect(() => {
     // console.log("SingleBook", singleBook?.books);
-    if (individualBook?.data?.book) {
-      setSingleBook(individualBook?.data?.book);
+    if (aBook?.book) {
+      console.log(aBook?.book);
+      setSingleBook(aBook.book);
     }
-  }, [individualBook]);
+  }, [aBook]);
 
   // There are 3 possibilities:
   let $details;
@@ -30,18 +33,18 @@ export default function SingleBook({selectedBookId, setSelectedBookId}) {
   else {
     $details = (
       <>
-        <h3>{singleBook.title}</h3>
-        {/* //       <p>{puppy.breed}</p>
-  //       <p>Team {puppy.team?.name ?? "Unassigned"}</p>
-  //       <div>
-  //         <button className="rbutton" onClick={() => removePuppy(puppy.id)}>
-  //           Remove From Roster
-  //         </button>
-  //       </div> */}
-
-        <figure>
-          <img src={singleBook.coverimage} alt={singleBook.name} />
-        </figure>
+        <div>
+          <h3>
+            {singleBook.title} by {singleBook.author}
+          </h3>
+          <img
+            src={singleBook.coverimage}
+            alt={singleBook.name}
+            width="150px"
+          />
+          <p>{singleBook.description}</p>
+          <p>Available: {singleBook.available ? "Yes" : "No"}</p>
+        </div>
       </>
     );
   }
