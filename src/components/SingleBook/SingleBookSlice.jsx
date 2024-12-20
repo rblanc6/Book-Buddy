@@ -6,7 +6,7 @@ const bookDetailsApi = api.injectEndpoints({
       query: (id) => ({
         url: `/books/${id}`,
         method: "GET",
-        transformResponse: (response) => response.data.players,
+        transformResponse: (response) => response.data.book,
         transformErrorResponse: (response) => response.data.error,
       }),
       providesTags: ["Book"],

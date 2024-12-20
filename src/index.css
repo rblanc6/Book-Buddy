@@ -10,4 +10,10 @@ body {
   margin-right: 10px;
 }
 
+.error {
+  color: red;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
 /* Add your own custom styles here */
