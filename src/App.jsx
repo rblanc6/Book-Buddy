@@ -6,6 +6,7 @@ import SingleBook from "./components/SingleBook/SingleBook";
 import Register from "./components/Register/Register";
 import Account from "./components/Account/Account";
 import Login from "./components/Login/Login";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -25,10 +26,12 @@ function App() {
           path="/login"
           element={<Login token={token} setToken={setToken} />}
         />
-        <Route
-          path="/account"
-          element={<Account token={token} setToken={setToken} />}
-        />
+        <Route path="/account" element={<ProtectedRoute />}>
+          <Route
+            path="/account"
+            element={<Account />}
+          />
+        </Route>
       </Routes>
     </>
   );

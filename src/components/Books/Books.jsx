@@ -11,6 +11,9 @@ export default function Books({ setSelectedBookId }) {
     console.log(id);
     navigate(`/books/${id}`);
   };
+  const [bookFilter, setBookFilter] = useState({
+    bookSearch: "",
+  });
 
   const [bookArr, setBookArr] = useState();
 
@@ -21,43 +24,63 @@ export default function Books({ setSelectedBookId }) {
     }
   }, [bookList]);
 
+  const update = (e) => {
+    setBookFilter({
+      bookSearch: e.target.value,
+    });
+    const temp = e.target.value;
+    if (temp.length === 0) {
+      setBookArr(bookList?.books);
+    } else {
+      const filteredBooks = bookList?.books.filter((element) => {
+        if (
+          element.title.toLowerCase().includes(temp) ||
+          element.author.toLowerCase().includes(temp)
+        ) {
+          return element;
+        }
+      });
+      setBookArr(filteredBooks);
+    }
+    console.log(temp);
+  };
+
   return (
     <article>
-      {/*input box and search button */}
-      {/* <div className="searchbar">
-    <form className="searchform" onSubmit={filterPuppies}>
-      <label>
-        <input
-          name="puppyName"
-          placeholder="Enter Puppies Name"
-          value={puppyFilter}
-          onChange={(e) => setPuppyFilter(e.target.value)}
-        />
-      </label>
-      <button className="searchbutton" type="submit">
-        Search
-      </button>
-    </form>
-  </div>
-  <br /> */}
       <h2>Library Books</h2>
+      <form>
+        <label>
+          <p className="searchbar">
+            Search by Title:{" "}
+            <input
+              className="inputfield"
+              name="bookSearch"
+              value={bookFilter.bookSearch}
+              onChange={update}
+            />
+          </p>
+        </label>
+      </form>
+      <p>
+        {isLoading && "Loading books..."}
+        {error && "Error loading books..."}
+      </p>
       <ul className="books">
-        {isLoading && <li>Loading books...</li>}
-        {error && <li>Error loading books...</li>}
         {bookArr?.map((p) => (
           <li key={p.id}>
-            <p>{p.title} </p>
-            <p>{p.author}</p>
+            <p className="booktitle">{p.title} </p>
+            <p className="bookauthor">by {p.author}</p>
+            <figure>
+              <img src={p.coverimage} alt={p.name} className="bookimage" />
+            </figure>
+
             {/* <p>{p.available}</p> */}
 
-            <figure className="outline">
-              <img src={p.coverimage} alt={p.name} width="200px" />
-            </figure>
             <button
               className="detailbutton"
               onClick={() => seeBookDetails(p.id)}
             >
-              See details
+              Click for Details
             </button>
           </li>
         ))}

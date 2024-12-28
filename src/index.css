@@ -1,8 +1,10 @@
 body {
-  font-family: Georgia, serif;
-  background-color: #f8f8f8;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1f1f1;
+  /* margin: 0; */
+  padding: 0 10px;
+  margin-top: 90px;
+  color: rgb(87, 102, 114);
 }
 
 #logo-image {
@@ -16,4 +18,217 @@ body {
   text-transform: uppercase;
 }
 
+.books {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem 0.5rem;
+  padding-inline-start: 0px;
+
+  li {
+    display: flex;
+    flex-flow: column;
+    /* gap: 1ch; */
+    /* border: solid 1px gray; */
+    padding: 0px;
+    background-color: rgb(173, 184, 198);
+    background-image: linear-gradient(rgb(87, 102, 114), rgb(173, 184, 198));
+
+    figure {
+      flex: 1;
+      height: 0;
+    }
+
+    p {
+      /* padding: 3px 5px; */
+      margin: 0px;
+      color: white;
+      /* background-color: rgb(87, 102, 114); */
+    }
+
+    img {
+      width: 100%;
+      border: 1px rgb(87, 102, 114) solid;
+      padding: 5px;
+      margin: auto;
+      display: block;
+      background-color: #f8f8f8;
+    }
+  }
+}
+
+.booktitle {
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+}
+
+.bookauthor {
+  font-size: small;
+  text-align: center;
+}
+
+.detailbutton {
+  color: rgb(87, 102, 114);
+  background-color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  /* margin-top:10px; */
+  border: solid 1px rgb(87, 102, 114);
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.detailbutton:hover {
+  background-color: rgb(87, 102, 114);
+  color: white;
+  border: solid 1px white;
+}
+
+.bookcontainer {
+  display: flex;
+  /* justify-content: space-around; */
+  width: 80%;
+  margin: auto;
+  border: solid 1px rgb(87, 102, 114);
+  padding: 5px;
+  background-color: rgb(173, 184, 198);
+}
+
+.bookdetails {
+  padding: 15px;
+  background-color: white;
+  color: rgb(87, 102, 114);
+  h3 {
+    padding: 5px 0;
+    margin: 0px;
+    font-style: italic;
+  }
+  h5 {
+    margin: 0px;
+  }
+  img {
+    width: 200px;
+    border: 1px rgb(87, 102, 114) solid;
+    padding: 10px;
+    background-color: white;
+  }
+}
+
+.navbar {
+  /* display: flex; */
+  align-items: center;
+  height: 75px;
+  padding-left: 10px;
+  justify-content: space-between;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  letter-spacing: 0.05em;
+
+  ul {
+    margin: 0;
+    padding-inline-start: 20px;
+  }
+
+  li {
+    margin: 0;
+    list-style-type: none;
+    display: inline-block;
+  }
+
+  a {
+    padding: 0 10px;
+    text-decoration: none;
+    color: rgb(87, 102, 114);
+    display: block;
+    line-height: 75px;
+  }
+  a:hover {
+    background-color: rgb(87, 102, 114);
+    color: white;
+    border-bottom: 5px solid rgb(173, 184, 198);
+  }
+
+  .active {
+    background-color: #f1f1f1;
+    /* border-bottom: 5px solid rgb(173, 184, 198); */
+  }
+}
+
+h2 {
+  color: rgb(87, 102, 114);
+  /* padding-left: 10px; */
+}
+
+.searchbar {
+  color: rgb(87, 102, 114);
+  /* padding-left: 10px; */
+}
+
+.inputfield {
+  color: rgb(87, 102, 114);
+  border: solid 1px rgb(87, 102, 114);
+  padding: 5px;
+  margin: 3px;
+}
+
+.inputfield:focus {
+  border: solid 1px rgb(87, 102, 114);
+  outline: none;
+  background-color: rgb(222, 231, 242);
+}
+
+.passwordinfo {
+  color: rgb(87, 102, 114);
+  font-size: small;
+  font-style: italic;
+  margin: 0 0 10px 5px;
+}
+
+.submitbutton {
+  background-color: rgb(87, 102, 114);
+  color: white;
+  border: solid 1px white;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+  width: 100px;
+}
+
+.submitbutton:active {
+  color: rgb(87, 102, 114);
+  background-color: white;
+  border: solid 1px rgb(87, 102, 114);
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.registertable {
+  width: 80%;
+}
+
+.account-table {
+  width: 100%;
+  border-spacing: 5px;
+  border: solid 1px rgb(87, 102, 114);
+  background-color: rgb(173, 184, 198);
+  td {
+    width: 50%;
+    vertical-align: top;
+    padding: 5px 10px;
+  }
+}
+
+.account-header {
+  background-color: rgb(87, 102, 114);
+  color: white;
+}
+
+.account-details {
+  background-color: white;
+}
 /* Add your own custom styles here */

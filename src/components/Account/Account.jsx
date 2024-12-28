@@ -8,8 +8,9 @@ export default function Account() {
   const { data, isSuccess } = useGetUserQuery(id);
   const [user, setUser] = useState("");
   const navigate = useNavigate();
+  //   const [isLoggedin, setIsLoggedin] = useState(false);
 
-  const getUser = async () => {
+  const getUserData = async () => {
     try {
       const response = await fetch(
         `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me`,
@@ -22,45 +23,65 @@ export default function Account() {
       );
       const data = await response.json();
       console.log(data);
+      //   setIsLoggedin(true);
       setUser(data);
       console.log(data.firstname);
     } catch (error) {
       console.error(error);
     }
   };
-  useEffect(() => {
-    getUser();
-  }, []);
 
-  //   useEffect(() => {
-  //     // getUser();
-  //     if (isSuccess) {
-  //       setUser(data.user);
-  //     }
-  //   }, [data]);
-
-  //       const submit = async (e) => {
-  //         e.preventDefault();
-  //         try {
-  //             const response = await updateUser({ id, email }).unwrap();
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
+  //   const logoutButton = () => {
+  //     localStorage.clear();
+  //     setIsLoggedin(false);
+  //     // navigate("/");
   //   };
+
+  useEffect(() => {
+    getUserData();
+  }, [data]);
+
+  //   const loginButton = () => {
+  //     navigate("/login");
+  //   };
+  //   const registerButton = () => {
+  //     navigate("/register");
+  //   };
+
   return (
-    <div>
-      <h3>
-        Welcome {user.firstname} {user.lastname}
-      </h3>
-      <p>
-        ACCOUNT DETAILS:
-        <br />
-        Email address: {user.email}
-        <br />
-        User ID#: {user.id}
-      </p>
-      <p>Books currently checked out: {user.books}</p>
-    </div>
+    <>
+      {/* {isLoggedin ? ( */}
+      <div>
+        <h2>
+          Welcome {user.firstname} {user.lastname}
+        </h2>
+        <table className="account-table">
+          <tr className="account-header">
+            <td>Account Details</td>
+            <td>Books currently checked out</td>
+          </tr>
+          <tr className="account-details">
+            <td>
+              <p>
+                <b>User ID#:</b> {user.id}
+                <br />
+                <b>Email address:</b> {user.email}
+              </p>
+            </td>
+            <td>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione, commodi cum, modi officia explicabo deserunt consequuntur laborum odit nihil, reiciendis ut numquam corrupti? Magnam voluptatum, cum inventore harum sapiente earum. {user.books}</p>
+            </td>
+          </tr>
+        </table>
+        {/* <button onClick={logoutButton}>Logout</button> */}
+      </div>
+      {/* ) : (
+        <div>
+          <h3>Welcome</h3>
+          <button onClick={loginButton}>Login</button>
+          <button onClick={registerButton}>Register</button>
+        </div>
+      )} */}
+    </>
   );
 }

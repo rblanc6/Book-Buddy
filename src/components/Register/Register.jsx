@@ -26,7 +26,6 @@ export default function Register() {
       const response = await registerUser(form).unwrap();
       console.log(response);
       navigate("/account");
-
     } catch (err) {
       setError(err.data.message);
       console.log(err.data.message);
@@ -35,55 +34,85 @@ export default function Register() {
 
   return (
     <div>
-      <h3>Register</h3>
+      <h2>Register</h2>
 
       <form onSubmit={submit}>
-        <div className="form-group">
-          <label>First name: </label>
-          <input
-            type="text"
-            placeholder="Enter first name"
-            name="firstname"
-            onChange={change}
-          />
-        </div>
-        <div className="form-group">
-          <label>Last name: </label>
-          <input
-            type="text"
-            placeholder="Enter last name"
-            name="lastname"
-            onChange={change}
-          />
-        </div>
-        <div className="form-group">
-          <label>Email address: </label>
-          <input
-            type="email"
-            placeholder="Enter email"
-            name="email"
-            onChange={change}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password: </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="password"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-            required
-            onChange={change}
-          />
-
-          <p className="passwordField">
-            Must contain at least one number and one uppercase and lowercase
-            letter, and at least 8 or more characters
-          </p>
-        </div>
-        <button type="submit">Submit</button>
-        {error && <p className="error">{error}</p>}
+        <table className="formtable">
+          <tr>
+            <td width="150px">
+              <label>First name: </label>
+            </td>
+            <td>
+              <input
+                className="inputfield"
+                type="text"
+                name="firstname"
+                onChange={change}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td width="150px">
+              <label>Last name: </label>
+            </td>
+            <td>
+              <input
+                className="inputfield"
+                type="text"
+                name="lastname"
+                onChange={change}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td width="150px">
+              <label>Email address: </label>
+            </td>
+            <td>
+              <input
+                className="inputfield"
+                type="email"
+                name="email"
+                onChange={change}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td width="150px">
+              <label>Password: </label>
+            </td>
+            <td>
+              <input
+                className="inputfield"
+                type="password"
+                name="password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                required
+                onChange={change}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p></p>
+            </td>
+            <td>
+              <p className="passwordinfo">
+                Password must be 8 or more characters in length and  contain at least one number, one uppercase letter, one lowercase
+                letter.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2}>
+              <button type="submit" className="submitbutton">
+                Submit
+              </button>
+            </td>
+          </tr>
+          {error && <p className="error">{error}</p>}
+        </table>
       </form>
     </div>
   );
