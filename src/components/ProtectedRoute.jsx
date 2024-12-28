@@ -1,7 +1,7 @@
 
 import { Navigate, Outlet } from "react-router-dom";
 export const ProtectedRoute = () => {
-    const token = (state) => {
+    const token = () => {
         localStorage.getItem("token");
       };
   

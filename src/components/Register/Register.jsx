@@ -25,7 +25,7 @@ export default function Register() {
     try {
       const response = await registerUser(form).unwrap();
       console.log(response);
-      navigate("/account");
+    //   navigate("/account");
     } catch (err) {
       setError(err.data.message);
       console.log(err.data.message);
@@ -38,80 +38,82 @@ export default function Register() {
 
       <form onSubmit={submit}>
         <table className="formtable">
-          <tr>
-            <td width="150px">
-              <label>First name: </label>
-            </td>
-            <td>
-              <input
-                className="inputfield"
-                type="text"
-                name="firstname"
-                onChange={change}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td width="150px">
-              <label>Last name: </label>
-            </td>
-            <td>
-              <input
-                className="inputfield"
-                type="text"
-                name="lastname"
-                onChange={change}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td width="150px">
-              <label>Email address: </label>
-            </td>
-            <td>
-              <input
-                className="inputfield"
-                type="email"
-                name="email"
-                onChange={change}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td width="150px">
-              <label>Password: </label>
-            </td>
-            <td>
-              <input
-                className="inputfield"
-                type="password"
-                name="password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                required
-                onChange={change}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p></p>
-            </td>
-            <td>
-              <p className="passwordinfo">
-                Password must be 8 or more characters in length and  contain at least one number, one uppercase letter, one lowercase
-                letter.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <button type="submit" className="submitbutton">
-                Submit
-              </button>
-            </td>
-          </tr>
-          {error && <p className="error">{error}</p>}
+          <tbody>
+            <tr>
+              <td width="150px">
+                <label>First name: </label>
+              </td>
+              <td>
+                <input
+                  className="inputfield"
+                  type="text"
+                  name="firstname"
+                  onChange={change}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="150px">
+                <label>Last name: </label>
+              </td>
+              <td>
+                <input
+                  className="inputfield"
+                  type="text"
+                  name="lastname"
+                  onChange={change}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="150px">
+                <label>Email address: </label>
+              </td>
+              <td>
+                <input
+                  className="inputfield"
+                  type="email"
+                  name="email"
+                  onChange={change}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="150px">
+                <label>Password: </label>
+              </td>
+              <td>
+                <input
+                  className="inputfield"
+                  type="password"
+                  name="password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                  required
+                  onChange={change}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p></p>
+              </td>
+              <td>
+                <p className="passwordinfo">
+                  Password must be 8 or more characters in length and contain at
+                  least one number, one uppercase letter, one lowercase letter.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
+                <button type="submit" className="submitbutton">
+                  Submit
+                </button>
+              </td>
+            </tr>
+            {error && <p className="error">{error}</p>}
+          </tbody>
         </table>
       </form>
     </div>

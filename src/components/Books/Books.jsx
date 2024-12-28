@@ -51,7 +51,7 @@ export default function Books({ setSelectedBookId }) {
       <form>
         <label>
           <p className="searchbar">
-            Search by Title:{" "}
+            Search by Title or Author:{" "}
             <input
               className="inputfield"
               name="bookSearch"
@@ -71,10 +71,13 @@ export default function Books({ setSelectedBookId }) {
             <p className="booktitle">{p.title} </p>
             <p className="bookauthor">by {p.author}</p>
             <figure>
-              <img src={p.coverimage} alt={p.name} className="bookimage" />
+              <div className="card">
+                <div className="ribbon">
+                  <span>{p.available ? "Available" : "Unavailable"}</span>
+                </div>
+                <img src={p.coverimage} alt={p.name} className="bookimage" />
+              </div>
             </figure>
-
-            {/* <p>{p.available}</p> */}
 
             <button
               className="detailbutton"

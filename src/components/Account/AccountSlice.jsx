@@ -6,6 +6,10 @@ const userDetailsApi = api.injectEndpoints({
       query: () => ({
         url: `/users/me`,
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         transformResponse: (response) => response.data.users,
         transformErrorResponse: (response) => response.data.error,
       }),
