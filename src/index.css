@@ -120,12 +120,18 @@ body {
   border: solid 1px white;
 }
 
+.detailbutton:active {
+  color: rgb(87, 102, 114);
+  background-color: #f1f1f1;
+  border: solid 1px rgb(87, 102, 114);
+}
+
 .bookcontainer {
   display: flex;
   /* justify-content: space-around; */
   width: 80%;
   margin: auto;
-  border: solid 1px rgb(87, 102, 114);
+  /* border: solid 1px rgb(87, 102, 114); */
   padding: 5px;
   background-color: rgb(173, 184, 198);
 }
@@ -148,6 +154,30 @@ body {
     padding: 10px;
     background-color: rgb(173, 184, 198);
   }
+}
+
+.returnbutton {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto 5px auto;
+  color: rgb(87, 102, 114);
+  background-color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  border: solid 1px rgb(87, 102, 114);
+  border-radius: 25px;
+}
+
+.returnbutton:hover {
+  background-color: rgb(87, 102, 114);
+  color: white;
+  border: solid 1px white;
+}
+
+.returnbutton:active {
+  color: rgb(87, 102, 114);
+  background-color: #f1f1f1;
+  border: solid 1px rgb(87, 102, 114);
 }
 
 .navbar {
@@ -242,19 +272,24 @@ h2 {
   border-radius: 25px;
 }
 
+
 .checkoutbutton {
   background-color: rgb(87, 102, 114);
   color: white;
-  border: solid 1px white;
+  border: solid 1px rgb(87, 102, 114);
   padding: 10px;
-  width: 100px;
+}
+
+.checkoutbutton:hover {
+  background-color: rgb(173, 184, 198);
+  color: white;
+  border: solid 1px rgb(87, 102, 114);
 }
 
 .checkoutbutton:active {
   color: rgb(87, 102, 114);
   background-color: white;
   border: solid 1px rgb(87, 102, 114);
-  padding: 10px;
 }
 
 .registertable {
