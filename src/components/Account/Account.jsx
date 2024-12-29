@@ -34,6 +34,8 @@ export default function Account() {
                   <br />
                   <b>Email address:</b> {user.email}
                 </p>
+                <p>First: {user.firstname}</p>
+                <p>Last: {user.lastname}</p>
               </td>
               <td>
                 <p>

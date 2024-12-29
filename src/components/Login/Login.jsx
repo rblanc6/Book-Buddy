@@ -3,6 +3,10 @@ import React from "react";
 import { useLoginMutation } from "./LoginSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+// action generators
+import { confirmLogin } from "../../app/confirmLoginSlice";
 
 export default function Login({ setToken }) {
   const [email, setEmail] = useState("");
@@ -11,6 +15,7 @@ export default function Login({ setToken }) {
   const [successMessage, setSuccessMessage] = useState(null);
   const [loginUser] = useLoginMutation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,9 +26,10 @@ export default function Login({ setToken }) {
       if (result.error) {
         console.log(error);
       } else {
-        localStorage.setItem("token", result.token);
+        //localStorage.setItem("token", result.token);
+        dispatch(confirmLogin());
         navigate("/account");
-        console.log("This is localStorage", localStorage);
+        //console.log("This is localStorage", localStorage);
       }
 
       setSuccessMessage(result.message);

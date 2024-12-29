@@ -18,6 +18,7 @@ const loginApi = api.injectEndpoints({
 });
 
 const storeToken = (state, { payload }) => {
+  console.log('loginSlice store token', payload);
   localStorage.setItem("token", payload.token);
 };
 
