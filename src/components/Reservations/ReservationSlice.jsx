@@ -10,23 +10,23 @@ const reservationsApi = api.injectEndpoints({
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        transformResponse: (response) => response.data.users,
-        transformErrorResponse: (response) => response.data.error,
+        // transformResponse: (response) => response.data.users,
+        // transformErrorResponse: (response) => response.data.error,
       }),
       providesTags: ["Book"],
     }),
 
     deleteReservation: builder.mutation({
-      query: (id) => ({
+      query: ({id}) => ({
         url: `/reservations/${id}`,
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        //   transformResponse: (response) => response.data.users,
+        //   transformErrorResponse: (response) => response.data.error,
       }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      transformResponse: (response) => response.data.users,
-      transformErrorResponse: (response) => response.data.error,
       invalidatesTags: ["Book"],
     }),
   }),

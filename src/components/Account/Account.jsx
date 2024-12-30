@@ -2,11 +2,18 @@
 import { useGetUserQuery } from "./AccountSlice";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+// import { useUpdateBookMutation } from "../Books/BooksSlice";
+import { useDeleteReservationMutation } from "../Reservations/ReservationSlice";
+import { useGetReservationQuery } from "../Reservations/ReservationSlice";
+
 
 export default function Account() {
   const { id } = useParams();
   const { data, isSuccess } = useGetUserQuery(id);
   const [user, setUser] = useState("");
+  // const [updateBook] = useUpdateBookMutation();
+  const [deleteBook] = useDeleteReservationMutation();
+  const { reservation, } = useGetReservationQuery();
 
   useEffect(() => {
     if (isSuccess) {
@@ -14,6 +21,30 @@ export default function Account() {
       setUser(data);
     }
   }, [data]);
+
+  // async function handleCheckIn({ event, id }) {
+  //   event.preventDefault();
+  //   console.log("Event", event.target.name);
+  //   console.log("id", id);
+  //   try {
+  //     const result = await updateBook({ id, available: false });
+  //     console.log("checkIn book result", result);
+  //   } catch (error) {
+  //     console.error("Error during checkIn", error);
+  //   }
+  // }
+
+  async function handleDeleteBook({ event, id }) {
+    event.preventDefault();
+    console.log("Event", event.target.name);
+    console.log("id", id);
+    try {
+      const result = await deleteBook({ id });
+      console.log("checkIn book result", result);
+    } catch (error) {
+      console.error("Error during checkIn", error);
+    }
+  }
 
   return (
     <>
@@ -34,19 +65,29 @@ export default function Account() {
                   <br />
                   <b>Email address:</b> {user.email}
                 </p>
-               
               </td>
               <td>
                 <p>
                   {/* List a individual book  */}
                   {/* {JSON.stringify(user.books[0].title)} */}
 
-
                   {user?.books?.map((book) => {
-                    return <div key={book.id}>
-                      <h3>{book.title}</h3> </div>;
+                    return (
+                      <div key={book.id}>
+                        <h3>
+                          {book.title}; {book.id}
+                        </h3>
+                        <button
+                          name="deletemeout"
+                          onClick={() =>
+                            handleDeleteBook({ event, id: book.id })
+                          }
+                        >
+                          Check-In
+                        </button>
+                      </div>
+                    );
                   })}
-
                 </p>
               </td>
             </tr>
