@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "./RegisterSlice";
+import { useDispatch } from "react-redux";
+
+// action generators
+import { confirmLogin } from "../../app/confirmLoginSlice";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -11,6 +15,7 @@ export default function Register() {
     password: "",
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [registerUser] = useRegisterMutation();
   const [error, setError] = useState(null);
   const change = (e) => {
@@ -25,7 +30,8 @@ export default function Register() {
     try {
       const response = await registerUser(form).unwrap();
       console.log(response);
-    //   navigate("/account");
+      dispatch(confirmLogin());
+      navigate("/account");
     } catch (err) {
       setError(err.data.message);
       console.log(err.data.message);
@@ -110,9 +116,9 @@ export default function Register() {
                 <button type="submit" className="submitbutton">
                   Submit
                 </button>
+                {error && <p className="error">{error}</p>}
               </td>
             </tr>
-            {error && <p className="error">{error}</p>}
           </tbody>
         </table>
       </form>

@@ -28,6 +28,7 @@ body {
   li {
     display: flex;
     flex-flow: column;
+    /* max-width: 400px; */
     /* gap: 1ch; */
     /* border: solid 1px gray; */
     padding: 0px;
@@ -48,6 +49,7 @@ body {
 
     img {
       width: 100%;
+      max-width: 300px;
       /* border: 1px rgb(87, 102, 114) solid;
       padding: 5px; */
       margin: auto;
@@ -58,8 +60,10 @@ body {
 }
 
 .card {
-  margin-top: 20px;
+  
   position: relative;
+  max-width: 300px;
+  margin: 0 auto;
 }
 /* .card:first-of-type {
   margin-right: 2em;

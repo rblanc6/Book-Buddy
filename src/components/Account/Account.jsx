@@ -34,16 +34,19 @@ export default function Account() {
                   <br />
                   <b>Email address:</b> {user.email}
                 </p>
-                <p>First: {user.firstname}</p>
-                <p>Last: {user.lastname}</p>
+               
               </td>
               <td>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Ratione, commodi cum, modi officia explicabo deserunt
-                  consequuntur laborum odit nihil, reiciendis ut numquam
-                  corrupti? Magnam voluptatum, cum inventore harum sapiente
-                  earum. {user.books}
+                  {/* List a individual book  */}
+                  {/* {JSON.stringify(user.books[0].title)} */}
+
+
+                  {user?.books?.map((book) => {
+                    return <div key={book.id}>
+                      <h3>{book.title}</h3> </div>;
+                  })}
+
                 </p>
               </td>
             </tr>
