@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 // import { useUpdateBookMutation } from "../Books/BooksSlice";
 import { useDeleteReservationMutation } from "../Reservations/ReservationSlice";
 import { useGetReservationQuery } from "../Reservations/ReservationSlice";
-
+import Reservation from "../Reservations/Reservation";
 
 export default function Account() {
   const { id } = useParams();
@@ -13,7 +13,7 @@ export default function Account() {
   const [user, setUser] = useState("");
   // const [updateBook] = useUpdateBookMutation();
   const [deleteBook] = useDeleteReservationMutation();
-  const { reservation, } = useGetReservationQuery();
+  // const { reservation } = useGetReservationQuery();
 
   useEffect(() => {
     if (isSuccess) {
@@ -67,28 +67,25 @@ export default function Account() {
                 </p>
               </td>
               <td>
-                <p>
-                  {/* List a individual book  */}
-                  {/* {JSON.stringify(user.books[0].title)} */}
+                {/* List a individual book  */}
+                {/* {JSON.stringify(user.books[0].title)} */}
 
-                  {user?.books?.map((book) => {
-                    return (
-                      <div key={book.id}>
-                        <h3>
-                          {book.title}; {book.id}
-                        </h3>
-                        <button
-                          name="deletemeout"
-                          onClick={() =>
-                            handleDeleteBook({ event, id: book.id })
-                          }
-                        >
-                          Check-In
-                        </button>
-                      </div>
-                    );
-                  })}
-                </p>
+                {/* {user?.books?.map((book) => {
+                  return (
+                    <div key={book.id}>
+                      <h3>
+                        {book.title}; {book.id}
+                      </h3>
+                      <button
+                        name="deletemeout"
+                        onClick={() => handleDeleteBook({ event, id: book.id })}
+                      >
+                        Check-In
+                      </button> */}
+                    {/* </div>
+                  );
+                })} */}
+                <Reservation />
               </td>
             </tr>
           </tbody>

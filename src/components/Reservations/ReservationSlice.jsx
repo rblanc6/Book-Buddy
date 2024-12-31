@@ -1,4 +1,5 @@
 import { api } from "../../app/api";
+import { createSlice } from "@reduxjs/toolkit";
 
 const reservationsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,7 +18,7 @@ const reservationsApi = api.injectEndpoints({
     }),
 
     deleteReservation: builder.mutation({
-      query: ({id}) => ({
+      query: ({ id }) => ({
         url: `/reservations/${id}`,
         method: "DELETE",
         headers: {
@@ -31,6 +32,18 @@ const reservationsApi = api.injectEndpoints({
     }),
   }),
 });
+
+
+// const reservationSlice = createSlice({
+//   name: "reservation",
+//   initialState: {},
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder.addMatcher(api.endpoints.register.matchFulfilled, reservationToken);
+//   },
+// });
+
+// export default reservationSlice.reducer;
 
 export const { useGetReservationQuery, useDeleteReservationMutation } =
   reservationsApi;
