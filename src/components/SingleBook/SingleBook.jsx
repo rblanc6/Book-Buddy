@@ -31,16 +31,16 @@ export default function SingleBook() {
     }
   }
 
-  async function handleCheckIn(event) {
-    event.preventDefault();
-    console.log("are you working? handleCheck-in");
-    try {
-      const result = await updateBook({ id, available: true });
-      console.log("check-in book result", result);
-    } catch (error) {
-      console.error("Error during check-in", error);
-    }
-  }
+  // async function handleCheckIn(event) {
+  //   event.preventDefault();
+  //   console.log("are you working? handleCheck-in");
+  //   try {
+  //     const result = await updateBook({ id, available: true });
+  //     console.log("check-in book result", result);
+  //   } catch (error) {
+  //     console.error("Error during check-in", error);
+  //   }
+  // }
 
   const returnToList = () => {
     navigate("/");
@@ -62,15 +62,15 @@ export default function SingleBook() {
               ""
             )}
           </p>
-          <p>
+          {/* <p>
             {localStorage.getItem("token") && !singleBook.available ? (
-              <button className="checkinbutton" onClick={handleCheckIn}>
+              <button className="checkoutbutton" onClick={handleCheckIn}>
                 Check-In
               </button>
             ) : (
               ""
             )}
-          </p>
+          </p> */}
         </div>
         <div className="bookdetails">
           <img src={singleBook.coverimage} alt={singleBook.name} />

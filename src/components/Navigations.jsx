@@ -65,6 +65,7 @@ export default function NavBar({ token }) {
               </li>
             </>
           )}
+          {/* <li>{auth2.toString()}</li> */}
         </ul>
       </nav>
     </div>

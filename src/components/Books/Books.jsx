@@ -2,11 +2,23 @@
 import { useState, useEffect } from "react";
 import { useGetBooksQuery } from "./BooksSlice";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Books({ setSelectedBookId }) {
   const { data: bookList, isLoading, error } = useGetBooksQuery();
 
   const navigate = useNavigate();
+  const [isGridView, setIsGridView] = useState(true);
+  const setListView = () => {
+    setIsGridView(false);
+    console.log("list view");
+  };
+
+  const setGridView = () => {
+    setIsGridView(true);
+    console.log("grid view");
+  };
+
   const seeBookDetails = (id) => {
     console.log(id);
     navigate(`/books/${id}`);
@@ -45,8 +57,6 @@ export default function Books({ setSelectedBookId }) {
     console.log(temp);
   };
 
-
-
   return (
     <article>
       <h2>Library Books</h2>
@@ -67,29 +77,71 @@ export default function Books({ setSelectedBookId }) {
         {isLoading && "Loading books..."}
         {error && "Error loading books..."}
       </p>
-      <ul className="books">
-        {bookArr?.map((p) => (
-          <li key={p.id}>
-            <p className="booktitle">{p.title} </p>
-            <p className="bookauthor">by {p.author}</p>
-            <figure>
-              <div className="card">
-                <div className="ribbon">
-                  <span>{p.available ? "Available" : "Unavailable"}</span>
-                </div>
-                <img src={p.coverimage} alt={p.name} className="bookimage" />
-              </div>
-            </figure>
+      <button className="viewbutton" onClick={setGridView}>
+        Grid View
+      </button>
+      <button className="viewbutton" onClick={setListView}>
+        List View
+      </button>
+      {isGridView ? (
+        <div className="grid-container">
+          <ul className="books">
+            {bookArr?.map((p) => (
+              <li key={p.id}>
+                <p className="booktitle">{p.title} </p>
+                <p className="bookauthor">by {p.author}</p>
+                <figure>
+                  <div className="card">
+                    <div className="ribbon">
+                      <span className={p.available ? "available" : "unavailable"}>{p.available ? "Available" : "Unavailable"}</span>
+                    </div>
+                    <img
+                      src={p.coverimage}
+                      alt={p.name}
+                      className="bookimage"
+                    />
+                  </div>
+                </figure>
 
-            <button
-              className="detailbutton"
-              onClick={() => seeBookDetails(p.id)}
-            >
-              Click for Details
-            </button>
-          </li>
-        ))}
-      </ul>
+                <button
+                  className="detailbutton"
+                  onClick={() => seeBookDetails(p.id)}
+                >
+                  Click for Details
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <table className="list-table">
+          <tbody>
+            <tr className="title-row">
+              <td>Title</td>
+              <td>Author</td>
+              <td>Availability</td>
+              <td>Details</td>
+            </tr>
+            {bookArr?.map((p) => (
+              <tr key={p.id}>
+                <td>{p.title}</td>
+                <td>{p.author}</td>
+                <td className={p.available ? "available" : "unavailable"}>
+                  {p.available ? "Available" : "Unavailable"}
+                </td>
+                <td className="details-cell">
+                  <button
+                    className="listdetailbutton"
+                    onClick={() => seeBookDetails(p.id)}
+                  >
+                    Details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </article>
   );
 }

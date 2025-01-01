@@ -34,17 +34,17 @@ export default function Account() {
   //   }
   // }
 
-  async function handleDeleteBook({ event, id }) {
-    event.preventDefault();
-    console.log("Event", event.target.name);
-    console.log("id", id);
-    try {
-      const result = await deleteBook({ id });
-      console.log("checkIn book result", result);
-    } catch (error) {
-      console.error("Error during checkIn", error);
-    }
-  }
+  //   async function handleDeleteBook({ event, id }) {
+  //     event.preventDefault();
+  //     console.log("Event", event.target.name);
+  //     console.log("id", id);
+  //     try {
+  //       const result = await deleteBook({ id });
+  //       console.log("checkIn book result", result);
+  //     } catch (error) {
+  //       console.error("Error during checkIn", error);
+  //     }
+  //   }
 
   return (
     <>
@@ -56,7 +56,7 @@ export default function Account() {
           <tbody>
             <tr className="account-header">
               <td>Account Details</td>
-              <td>Books currently checked out</td>
+              <td>Current Books</td>
             </tr>
             <tr className="account-details">
               <td>
@@ -82,7 +82,7 @@ export default function Account() {
                       >
                         Check-In
                       </button> */}
-                    {/* </div>
+                {/* </div>
                   );
                 })} */}
                 <Reservation />

@@ -59,6 +59,53 @@ body {
   }
 }
 
+.list-table {
+  width: 100%;
+  border: solid 1px rgb(87, 102, 114);
+  border-collapse: collapse;
+  margin-top: 10px;
+
+  .details-cell {
+    text-align: center;
+  }
+
+  .title-row {
+    /* text-align: center; */
+    font-weight: bold;
+    background-color: rgb(87, 102, 114) !important;
+    color: white !important;
+  }
+
+  td {
+    padding: 5px;
+    border: solid 1px rgb(87, 102, 114);
+  }
+
+  tr:nth-child(odd) {
+    background-color: white;
+  }
+}
+
+.viewbutton {
+  background-color: rgb(87, 102, 114);
+  color: white;
+  border: solid 1px rgb(87, 102, 114);
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.viewbutton:hover {
+  background-color: rgb(173, 184, 198);
+  color: white;
+  border: solid 1px rgb(87, 102, 114);
+}
+
+.viewbutton:active {
+  color: rgb(87, 102, 114);
+  background-color: white;
+  border: solid 1px rgb(87, 102, 114);
+}
+
 .card {
   position: relative;
   max-width: 300px;
@@ -94,6 +141,15 @@ body {
   top: 20px;
   right: -25px;
 }
+.available {
+  color: rgb(17, 174, 17) !important;
+  /* color: black; */
+}
+
+.unavailable {
+  color: rgb(216, 26, 26) !important;
+  /* color: white; */
+}
 
 .booktitle {
   font-style: italic;
@@ -125,6 +181,29 @@ body {
 }
 
 .detailbutton:active {
+  color: rgb(87, 102, 114);
+  background-color: #f1f1f1;
+  border: solid 1px rgb(87, 102, 114);
+}
+
+.listdetailbutton {
+  color: rgb(87, 102, 114);
+  background-color: white;
+  padding: 5px;
+  text-transform: uppercase;
+  /* margin-top:10px; */
+  border: solid 1px rgb(87, 102, 114);
+  /* border-radius: 25px; */
+  /* margin: 10px; */
+}
+
+.listdetailbutton:hover {
+  background-color: rgb(87, 102, 114);
+  color: white;
+  border: solid 1px white;
+}
+
+.listdetailbutton:active {
   color: rgb(87, 102, 114);
   background-color: #f1f1f1;
   border: solid 1px rgb(87, 102, 114);
@@ -319,4 +398,46 @@ h2 {
 .account-details {
   background-color: white;
 }
+
+.reservedbooks {
+  margin: 5px;
+  padding-inline-start: 0px;
+
+  li {
+    list-style-type: none;
+    /* text-align: center; */
+    /* display: block; */
+  }
+
+  li:nth-child(odd) {
+    /* background-color: #f1f1f1; */
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
+  li:nth-child(even) {
+    margin-bottom: 20px;
+  }
+}
+
+.reservationbutton {
+  background-color: rgb(87, 102, 114);
+  color: white;
+  border: solid 1px rgb(87, 102, 114);
+  padding: 5px;
+  /* width: 100%; */
+}
+
+.reservationbutton:hover {
+  background-color: rgb(173, 184, 198);
+  color: white;
+  border: solid 1px rgb(87, 102, 114);
+}
+
+.reservationbutton:active {
+  color: rgb(87, 102, 114);
+  background-color: white;
+  border: solid 1px rgb(87, 102, 114);
+}
+
 /* Add your own custom styles here */
