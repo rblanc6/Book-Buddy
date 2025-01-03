@@ -1,4 +1,4 @@
-/* TODO - add your code to create a functional React component that renders details for a single book. Fetch the book data from the provided API. You may consider conditionally rendering a 'Checkout' button for logged in users. */
+
 import { useEffect, useState } from "react";
 import { useGetBookQuery } from "./SingleBookSlice";
 import { useParams, useNavigate } from "react-router-dom";
@@ -13,34 +13,20 @@ export default function SingleBook() {
   const [singleBook, setSingleBook] = useState({});
 
   useEffect(() => {
-    // console.log("SingleBook", singleBook?.books);
     if (aBook?.book) {
-      console.log(aBook?.book);
       setSingleBook(aBook.book);
     }
   }, [aBook]);
 
   async function handleCheckout(event) {
     event.preventDefault();
-    console.log("are you working? handleCheckout");
     try {
       const result = await updateBook({ id, available: false });
-      console.log("checkout book result", result);
     } catch (error) {
       console.error("Error during checkout", error);
     }
   }
 
-  // async function handleCheckIn(event) {
-  //   event.preventDefault();
-  //   console.log("are you working? handleCheck-in");
-  //   try {
-  //     const result = await updateBook({ id, available: true });
-  //     console.log("check-in book result", result);
-  //   } catch (error) {
-  //     console.error("Error during check-in", error);
-  //   }
-  // }
 
   const returnToList = () => {
     navigate("/");
@@ -62,15 +48,6 @@ export default function SingleBook() {
               ""
             )}
           </p>
-          {/* <p>
-            {localStorage.getItem("token") && !singleBook.available ? (
-              <button className="checkoutbutton" onClick={handleCheckIn}>
-                Check-In
-              </button>
-            ) : (
-              ""
-            )}
-          </p> */}
         </div>
         <div className="bookdetails">
           <img src={singleBook.coverimage} alt={singleBook.name} />

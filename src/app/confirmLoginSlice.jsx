@@ -1,21 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  // value: false,
   value: localStorage.getItem("token") ? true : false,
 };
-// share state of whether there is a token
+
+
 export const confirmLoginSlice = createSlice({
   name: "confirmLogin",
   initialState,
   reducers: {
     confirmLogin: (state) => {
-      console.log("dispatch confirmLogin");
       state.value = true;
     },
     confirmLogout: (state) => {
       state.value = false;
-      console.log("dispatch confirmLogout");
     },
   },
 });

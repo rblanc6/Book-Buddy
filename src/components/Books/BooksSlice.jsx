@@ -21,8 +21,8 @@ const booksApi = api.injectEndpoints({
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        // transformResponse: (response) => response.data?.books,
-        // transformErrorResponse: (response) => response.data.error,
+        transformResponse: (response) => response.data.books,
+        transformErrorResponse: (response) => response.data.error,
       }),
 
       invalidatesTags: ["Book"],

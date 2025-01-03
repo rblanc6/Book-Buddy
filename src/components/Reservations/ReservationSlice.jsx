@@ -1,5 +1,4 @@
 import { api } from "../../app/api";
-import { createSlice } from "@reduxjs/toolkit";
 
 const reservationsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -11,8 +10,8 @@ const reservationsApi = api.injectEndpoints({
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        // transformResponse: (response) => response.data.users,
-        // transformErrorResponse: (response) => response.data.error,
+        transformResponse: (response) => response.data.users,
+        transformErrorResponse: (response) => response.data.error,
       }),
       providesTags: ["Book"],
     }),
@@ -25,25 +24,13 @@ const reservationsApi = api.injectEndpoints({
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        //   transformResponse: (response) => response.data.users,
-        //   transformErrorResponse: (response) => response.data.error,
+          transformResponse: (response) => response.data.users,
+          transformErrorResponse: (response) => response.data.error,
       }),
       invalidatesTags: ["Book"],
     }),
   }),
 });
-
-
-// const reservationSlice = createSlice({
-//   name: "reservation",
-//   initialState: {},
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder.addMatcher(api.endpoints.register.matchFulfilled, reservationToken);
-//   },
-// });
-
-// export default reservationSlice.reducer;
 
 export const { useGetReservationQuery, useDeleteReservationMutation } =
   reservationsApi;

@@ -14,8 +14,6 @@ body {
 
 .error {
   color: red;
-  font-weight: bolder;
-  text-transform: uppercase;
 }
 
 .books {

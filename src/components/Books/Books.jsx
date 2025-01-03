@@ -1,26 +1,21 @@
-/* TODO - add your code to create a functional React component that displays all of the available books in the library's catalog. Fetch the book data from the provided API. Users should be able to click on an individual book to navigate to the SingleBook component and view its details. */
 import { useState, useEffect } from "react";
 import { useGetBooksQuery } from "./BooksSlice";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-export default function Books({ setSelectedBookId }) {
+export default function Books() {
   const { data: bookList, isLoading, error } = useGetBooksQuery();
 
   const navigate = useNavigate();
   const [isGridView, setIsGridView] = useState(true);
   const setListView = () => {
     setIsGridView(false);
-    console.log("list view");
   };
 
   const setGridView = () => {
     setIsGridView(true);
-    console.log("grid view");
   };
 
   const seeBookDetails = (id) => {
-    console.log(id);
     navigate(`/books/${id}`);
   };
   const [bookFilter, setBookFilter] = useState({
@@ -30,7 +25,6 @@ export default function Books({ setSelectedBookId }) {
   const [bookArr, setBookArr] = useState();
 
   useEffect(() => {
-    console.log("bookList", bookList?.books);
     if (bookList?.books) {
       setBookArr(bookList?.books);
     }
@@ -54,7 +48,6 @@ export default function Books({ setSelectedBookId }) {
       });
       setBookArr(filteredBooks);
     }
-    console.log(temp);
   };
 
   return (
@@ -93,7 +86,11 @@ export default function Books({ setSelectedBookId }) {
                 <figure>
                   <div className="card">
                     <div className="ribbon">
-                      <span className={p.available ? "available" : "unavailable"}>{p.available ? "Available" : "Unavailable"}</span>
+                      <span
+                        className={p.available ? "available" : "unavailable"}
+                      >
+                        {p.available ? "Available" : "Unavailable"}
+                      </span>
                     </div>
                     <img
                       src={p.coverimage}

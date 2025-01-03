@@ -1,10 +1,8 @@
-/* TODO - add your code to create a functional React component that renders a registration form */
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "./RegisterSlice";
 import { useDispatch } from "react-redux";
-
-// action generators
 import { confirmLogin } from "../../app/confirmLoginSlice";
 
 export default function Register() {
@@ -29,12 +27,11 @@ export default function Register() {
     e.preventDefault();
     try {
       const response = await registerUser(form).unwrap();
-      console.log(response);
       dispatch(confirmLogin());
       navigate("/account");
-    } catch (err) {
-      setError(err.data.message);
-      console.log(err.data.message);
+    } catch (error) {
+      setError(error.data.message);
+      console.error(error.data.message);
     }
   };
 

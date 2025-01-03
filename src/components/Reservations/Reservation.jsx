@@ -15,7 +15,6 @@ export default function Reservation() {
         id,
         available: !reservation.available,
       }).unwrap();
-      console.log("Returned book Id", id);
     } catch (error) {
       console.error(error);
     }
@@ -23,14 +22,12 @@ export default function Reservation() {
 
   useEffect(() => {
     if (isSuccess) {
-      // console.log("this is reservation", reservation.reservation);
       setBooks(reservation.reservation);
-      // console.log("books", books);
     }
   }, [isSuccess, reservation]);
 
   useEffect(() => {
-    // console.log("Books updated", books);
+
   }, [books]);
 
   let $reservationList;
@@ -63,17 +60,6 @@ export default function Reservation() {
   return (
     <>
       {$reservationList}
-
-      {/* {books?.map((book, index) => {
-        return (
-          <div key={index}>
-            <p>
-              {book.title} {book.id}
-            </p>
-            <button onClick={() => returnBook(book.id)}>Check-In</button>
-          </div>
-        );
-      })}  */}
     </>
   );
 }
