@@ -56,29 +56,7 @@ body {
 }
 
 .list-table {
-  width: 100%;
-  border: solid 1px rgb(87, 102, 114);
-  border-collapse: collapse;
-  margin-top: 10px;
-
-  .details-cell {
-    text-align: center;
-  }
-
-  .title-row {
-    font-weight: bold;
-    background-color: rgb(87, 102, 114) !important;
-    color: white !important;
-  }
-
-  td {
-    padding: 5px;
-    border: solid 1px rgb(87, 102, 114);
-  }
-
-  tr:nth-child(odd) {
-    background-color: white;
-  }
+  margin: 15px 0 20px 0;
 }
 
 .viewbutton {
@@ -360,10 +338,7 @@ h2 {
 
 .account-table {
   width: 100%;
-  border-spacing: 5px;
-  border: solid 1px rgb(87, 102, 114);
-  background-color: rgb(173, 184, 198);
-  td {
+   td {
     width: 50%;
     vertical-align: top;
     padding: 5px 10px;
@@ -376,7 +351,7 @@ h2 {
 }
 
 .account-details {
-  background-color: white;
+  background-color: #f1f1f1;
 }
 
 .reservedbooks {
@@ -402,6 +377,7 @@ h2 {
   color: white;
   border: solid 1px rgb(87, 102, 114);
   padding: 5px;
+  margin: 5px 0;
 }
 
 .reservationbutton:hover {

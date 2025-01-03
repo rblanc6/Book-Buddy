@@ -3,6 +3,21 @@ import {
   useDeleteReservationMutation,
 } from "./ReservationSlice";
 import { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: "rgb(87, 102, 114)",
+  ...theme.applyStyles("dark", {
+    backgroundColor: "#1A2027",
+  }),
+}));
 
 export default function Reservation() {
   const { data: reservation, isSuccess } = useGetReservationQuery();
@@ -26,40 +41,39 @@ export default function Reservation() {
     }
   }, [isSuccess, reservation]);
 
-  useEffect(() => {
-
-  }, [books]);
+  useEffect(() => {}, [books]);
 
   let $reservationList;
   if (books.length === 0) {
-    $reservationList = <p>You currently have no books checked out.</p>;
+    $reservationList = (
+      <Stack spacing={2} className="reservedbooks">
+        <Item>You currently have no books checked out.</Item>
+      </Stack>
+    );
   } else {
     $reservationList = (
       <>
-        {books?.map((book, index) => {
-          return (
-            <ul className="reservedbooks" key={index}>
-             
-             <li> 
-                <b>{book.title}</b><br/> by {book.author}
-                
-              </li>
-              <li><button
-                  className="reservationbutton"
-                  onClick={() => returnBook(book.id)}
-                >
-                  Return
-                </button></li>
-            </ul>
-          );
-        })}
+        <Box sx={{ width: "100%" }}>
+          {books?.map((book, index) => {
+            return (
+              <Stack spacing={2} className="reservedbooks" key={index}>
+                <Item>
+                  <b>{book.title}</b>
+                  <br /> by {book.author} <br />
+                  <button
+                    className="reservationbutton"
+                    onClick={() => returnBook(book.id)}
+                  >
+                    Return
+                  </button>
+                </Item>
+              </Stack>
+            );
+          })}
+        </Box>
       </>
     );
   }
 
-  return (
-    <>
-      {$reservationList}
-    </>
-  );
+  return <>{$reservationList}</>;
 }

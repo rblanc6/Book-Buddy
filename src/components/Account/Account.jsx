@@ -1,4 +1,3 @@
-
 import { useGetUserQuery } from "./AccountSlice";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -29,11 +28,9 @@ export default function Account() {
             </tr>
             <tr className="account-details">
               <td>
-                <p>
-                  <b>User ID#:</b> {user.id}
-                  <br />
-                  <b>Email address:</b> {user.email}
-                </p>
+                <b>User ID#:</b> {user.id}
+                <br />
+                <b>Email address:</b> {user.email}
               </td>
               <td>
                 <Reservation />

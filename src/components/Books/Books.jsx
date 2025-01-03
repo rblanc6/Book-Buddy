@@ -2,8 +2,33 @@ import { useState, useEffect } from "react";
 import { useGetBooksQuery } from "./BooksSlice";
 import { useNavigate } from "react-router-dom";
 import ToggleBooks from "./ToggleButtonBooks";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "rgb(87, 102, 114)",
+    color: theme.palette.common.white,
+  },
 
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(() => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: "#f5f5f5",
+  },
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 export default function Books() {
   const { data: bookList, isLoading, error } = useGetBooksQuery();
@@ -73,8 +98,11 @@ export default function Books() {
         {isLoading && "Loading books..."}
         {error && "Error loading books..."}
       </p>
-      <ToggleBooks setGridView={setGridView} setListView={setListView}></ToggleBooks>
-      
+      <ToggleBooks
+        setGridView={setGridView}
+        setListView={setListView}
+      ></ToggleBooks>
+
       {isGridView ? (
         <div className="grid-container">
           <ul className="books">
@@ -110,33 +138,42 @@ export default function Books() {
           </ul>
         </div>
       ) : (
-        <table className="list-table">
-          <tbody>
-            <tr className="title-row">
-              <td>Title</td>
-              <td>Author</td>
-              <td>Availability</td>
-              <td>Details</td>
-            </tr>
+        <Table
+          sx={{ minWidth: 700 }}
+          aria-label="customized table"
+          component={Paper}
+          className="list-table"
+        >
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Title</StyledTableCell>
+              <StyledTableCell>Author</StyledTableCell>
+              <StyledTableCell>Availability</StyledTableCell>
+              <StyledTableCell>Details</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {bookArr?.map((p) => (
-              <tr key={p.id}>
-                <td>{p.title}</td>
-                <td>{p.author}</td>
-                <td className={p.available ? "available" : "unavailable"}>
+              <StyledTableRow key={p.id}>
+                <StyledTableCell>{p.title}</StyledTableCell>
+                <StyledTableCell>{p.author}</StyledTableCell>
+                <StyledTableCell
+                  className={p.available ? "available" : "unavailable"}
+                >
                   {p.available ? "Available" : "Unavailable"}
-                </td>
-                <td className="details-cell">
+                </StyledTableCell>
+                <StyledTableCell>
                   <button
                     className="listdetailbutton"
                     onClick={() => seeBookDetails(p.id)}
                   >
                     Details
                   </button>
-                </td>
-              </tr>
+                </StyledTableCell>
+              </StyledTableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       )}
     </article>
   );
