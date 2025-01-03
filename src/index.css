@@ -1,7 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f1f1f1;
-  /* margin: 0; */
   padding: 0 10px;
   margin-top: 90px;
   color: rgb(87, 102, 114);
@@ -16,6 +15,12 @@ body {
   color: red;
 }
 
+.toggle-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .books {
   list-style-type: none;
   display: grid;
@@ -26,9 +31,6 @@ body {
   li {
     display: flex;
     flex-flow: column;
-    /* max-width: 400px; */
-    /* gap: 1ch; */
-    /* border: solid 1px gray; */
     padding: 0px;
     background-color: rgb(173, 184, 198);
     background-image: linear-gradient(rgb(87, 102, 114), rgb(173, 184, 198));
@@ -39,17 +41,13 @@ body {
     }
 
     p {
-      /* padding: 3px 5px; */
       margin: 0px;
       color: white;
-      /* background-color: rgb(87, 102, 114); */
     }
 
     img {
       width: 100%;
       max-width: 300px;
-      /* border: 1px rgb(87, 102, 114) solid;
-      padding: 5px; */
       margin: auto;
       display: block;
       background-color: #f8f8f8;
@@ -68,7 +66,6 @@ body {
   }
 
   .title-row {
-    /* text-align: center; */
     font-weight: bold;
     background-color: rgb(87, 102, 114) !important;
     color: white !important;
@@ -109,9 +106,6 @@ body {
   max-width: 300px;
   margin: 0 auto;
 }
-/* .card:first-of-type {
-  margin-right: 2em;
-} */
 
 .ribbon {
   position: absolute;
@@ -141,12 +135,10 @@ body {
 }
 .available {
   color: rgb(17, 174, 17) !important;
-  /* color: black; */
 }
 
 .unavailable {
   color: rgb(216, 26, 26) !important;
-  /* color: white; */
 }
 
 .booktitle {
@@ -166,7 +158,6 @@ body {
   background-color: white;
   padding: 5px;
   text-transform: uppercase;
-  /* margin-top:10px; */
   border: solid 1px rgb(87, 102, 114);
   border-radius: 25px;
   margin: 10px;
@@ -189,10 +180,7 @@ body {
   background-color: white;
   padding: 5px;
   text-transform: uppercase;
-  /* margin-top:10px; */
   border: solid 1px rgb(87, 102, 114);
-  /* border-radius: 25px; */
-  /* margin: 10px; */
 }
 
 .listdetailbutton:hover {
@@ -209,10 +197,8 @@ body {
 
 .bookcontainer {
   display: flex;
-  /* justify-content: space-around; */
   width: 80%;
   margin: auto;
-  /* border: solid 1px rgb(87, 102, 114); */
   padding: 5px;
   background-color: rgb(173, 184, 198);
 }
@@ -262,7 +248,6 @@ body {
 }
 
 .navbar {
-  /* display: flex; */
   align-items: center;
   height: 75px;
   padding-left: 10px;
@@ -301,18 +286,15 @@ body {
 
   .active {
     background-color: #f1f1f1;
-    /* border-bottom: 5px solid rgb(173, 184, 198); */
   }
 }
 
 h2 {
   color: rgb(87, 102, 114);
-  /* padding-left: 10px; */
 }
 
 .searchbar {
   color: rgb(87, 102, 114);
-  /* padding-left: 10px; */
 }
 
 .inputfield {
@@ -403,12 +385,9 @@ h2 {
 
   li {
     list-style-type: none;
-    /* text-align: center; */
-    /* display: block; */
   }
 
   li:nth-child(odd) {
-    /* background-color: #f1f1f1; */
     padding: 5px;
     margin-bottom: 5px;
   }
@@ -423,7 +402,6 @@ h2 {
   color: white;
   border: solid 1px rgb(87, 102, 114);
   padding: 5px;
-  /* width: 100%; */
 }
 
 .reservationbutton:hover {
@@ -437,5 +415,3 @@ h2 {
   background-color: white;
   border: solid 1px rgb(87, 102, 114);
 }
-
-/* Add your own custom styles here */

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useGetBooksQuery } from "./BooksSlice";
 import { useNavigate } from "react-router-dom";
+import ToggleBooks from "./ToggleButtonBooks";
+
+
 
 export default function Books() {
   const { data: bookList, isLoading, error } = useGetBooksQuery();
@@ -70,12 +73,8 @@ export default function Books() {
         {isLoading && "Loading books..."}
         {error && "Error loading books..."}
       </p>
-      <button className="viewbutton" onClick={setGridView}>
-        Grid View
-      </button>
-      <button className="viewbutton" onClick={setListView}>
-        List View
-      </button>
+      <ToggleBooks setGridView={setGridView} setListView={setListView}></ToggleBooks>
+      
       {isGridView ? (
         <div className="grid-container">
           <ul className="books">
