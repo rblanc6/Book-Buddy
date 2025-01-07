@@ -1,14 +1,49 @@
-/* TODO - add your code to create a functional React component that displays all of the available books in the library's catalog. Fetch the book data from the provided API. Users should be able to click on an individual book to navigate to the SingleBook component and view its details. */
 import { useState, useEffect } from "react";
 import { useGetBooksQuery } from "./BooksSlice";
 import { useNavigate } from "react-router-dom";
+import ToggleBooks from "./ToggleButtonBooks";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
-export default function Books({ setSelectedBookId }) {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "rgb(87, 102, 114)",
+    color: theme.palette.common.white,
+  },
+
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(() => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: "#f5f5f5",
+  },
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
+export default function Books() {
   const { data: bookList, isLoading, error } = useGetBooksQuery();
 
   const navigate = useNavigate();
+  const [isGridView, setIsGridView] = useState(true);
+  const setListView = () => {
+    setIsGridView(false);
+  };
+
+  const setGridView = () => {
+    setIsGridView(true);
+  };
+
   const seeBookDetails = (id) => {
-    console.log(id);
     navigate(`/books/${id}`);
   };
   const [bookFilter, setBookFilter] = useState({
@@ -18,7 +53,6 @@ export default function Books({ setSelectedBookId }) {
   const [bookArr, setBookArr] = useState();
 
   useEffect(() => {
-    console.log("bookList", bookList?.books);
     if (bookList?.books) {
       setBookArr(bookList?.books);
     }
@@ -42,10 +76,7 @@ export default function Books({ setSelectedBookId }) {
       });
       setBookArr(filteredBooks);
     }
-    console.log(temp);
   };
-
-
 
   return (
     <article>
@@ -67,29 +98,83 @@ export default function Books({ setSelectedBookId }) {
         {isLoading && "Loading books..."}
         {error && "Error loading books..."}
       </p>
-      <ul className="books">
-        {bookArr?.map((p) => (
-          <li key={p.id}>
-            <p className="booktitle">{p.title} </p>
-            <p className="bookauthor">by {p.author}</p>
-            <figure>
-              <div className="card">
-                <div className="ribbon">
-                  <span>{p.available ? "Available" : "Unavailable"}</span>
-                </div>
-                <img src={p.coverimage} alt={p.name} className="bookimage" />
-              </div>
-            </figure>
+      <ToggleBooks
+        setGridView={setGridView}
+        setListView={setListView}
+      ></ToggleBooks>
 
-            <button
-              className="detailbutton"
-              onClick={() => seeBookDetails(p.id)}
-            >
-              Click for Details
-            </button>
-          </li>
-        ))}
-      </ul>
+      {isGridView ? (
+        <div className="grid-container">
+          <ul className="books">
+            {bookArr?.map((p) => (
+              <li key={p.id}>
+                <p className="booktitle">{p.title} </p>
+                <p className="bookauthor">by {p.author}</p>
+                <figure>
+                  <div className="card">
+                    <div className="ribbon">
+                      <span
+                        className={p.available ? "available" : "unavailable"}
+                      >
+                        {p.available ? "Available" : "Unavailable"}
+                      </span>
+                    </div>
+                    <img
+                      src={p.coverimage}
+                      alt={p.name}
+                      className="bookimage"
+                    />
+                  </div>
+                </figure>
+
+                <button
+                  className="detailbutton"
+                  onClick={() => seeBookDetails(p.id)}
+                >
+                  Click for Details
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <Table
+          sx={{ minWidth: 700 }}
+          aria-label="customized table"
+          component={Paper}
+          className="list-table"
+        >
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Title</StyledTableCell>
+              <StyledTableCell>Author</StyledTableCell>
+              <StyledTableCell>Availability</StyledTableCell>
+              <StyledTableCell>Details</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {bookArr?.map((p) => (
+              <StyledTableRow key={p.id}>
+                <StyledTableCell>{p.title}</StyledTableCell>
+                <StyledTableCell>{p.author}</StyledTableCell>
+                <StyledTableCell
+                  className={p.available ? "available" : "unavailable"}
+                >
+                  {p.available ? "Available" : "Unavailable"}
+                </StyledTableCell>
+                <StyledTableCell>
+                  <button
+                    className="listdetailbutton"
+                    onClick={() => seeBookDetails(p.id)}
+                  >
+                    Details
+                  </button>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </article>
   );
 }
